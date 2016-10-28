@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Action;
+namespace CodeEmailMKT\Action;
 
+use CodeEmailMKT\Minhaclasse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -21,7 +22,10 @@ class TestePageAction {
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null) {
-        return new HtmlResponse($this->template->render("app::teste", ['data' => 'dados passados para o template']));
+        return new HtmlResponse($this->template->render("app::teste", [
+            'data' => 'dados passados para o template',
+            'minhaClasse' => new Minhaclasse()
+        ]));
     }
 
 }
